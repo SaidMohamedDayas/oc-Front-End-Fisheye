@@ -1,15 +1,139 @@
-#contact_modal {
-    display: none;
-}
-
 .photograph-header {
     background-color: #FAFAFA;
     height: 300px;
     margin: 0 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
 }
 
+.photograph-profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.photograph-name {
+    color: #D3573C;
+    font-size: 64px;
+    font-weight: 400;
+    margin: 0;
+}
+
+.photograph-location {
+    color: #901C1C;
+    font-size: 24px;
+    font-weight: 400;
+    margin: 0;
+}
+
+.photograph-description {
+    font-size: 18px;
+    font-weight: 400;
+    color: #525252
+}
+
+.photograph-header img {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.media-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 70px;
+    margin: 0 100px;
+    padding-bottom: 50px;
+}
+
+.image-div,
+.video-div {
+    margin: 0;
+    padding: 0;
+    transition: transform 0.4s ease-out;
+    display: inline-block;
+    overflow: hidden;
+    outline: none;
+}
+
+.image-div:hover,
+.image-div:focus,
+.video-div:hover,
+.video-div:focus {
+    transform: scale(1.04);
+}
+
+.media-image,
+.media-video {
+    height: 300px;
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+    object-position: center;
+    object-fit: cover;
+}
+
+.media-video {
+    object-fit: cover;
+}
+
+.media-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.media-title {
+    color: #901C1C;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 31.25px;
+    margin: 0;
+}
+
+.likes-div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.media-likes {
+    color: #901C1C;
+    font-size: 18px;
+    font-weight: 400;
+    margin: 0;
+    padding-right: 5px;
+}
+
+.like-btn {
+    color: #901C1C;
+    cursor: pointer;
+}
+
+.like-icon {
+    padding-left: 5px;
+}
+
+.total-likes-div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 376px;
+    border-radius: 5px 5px 0 0;
+    background-color: #DB8876;
+    position: fixed;
+    bottom: 0;
+    right: 50px;
+    z-index: 500;
+}
+
+/* Style de la section contact */
 .contact_button {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     color: white;
     padding: 11px;
@@ -21,6 +145,39 @@
     cursor: pointer;
 }
 
+#contact_button:hover {
+    background-color: #DB8876;
+    color: black;
+}
+
+#backdrop_modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(196, 196, 196, 0.4);
+}
+
+#contact_modal {
+    /* display: none; */
+    position: fixed;
+    z-index: 2;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+#contact_modal::backdrop {
+    background-color: rgba(196, 196, 196, 0.4);
+}
+
+
 .modal {
     border-radius: 5px;
     background-color: #DB8876;
@@ -29,12 +186,15 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    padding: 35px;
+    padding: 25px;
     margin: auto;
+    box-shadow: -5px 10px 30px 0px rgba(0, 0, 0, 0.25);
 }
 
-.modal header {
+.modal_header {
+    display: flex;
     justify-content: space-between;
+    align-items: flex-start;
     width: 100%;
 }
 
@@ -42,15 +202,23 @@
     cursor: pointer;
 }
 
-.modal header h2 {
-    font-size: 64px;
-    font-weight: normal;
-    text-align: center;
+.modal header h1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 58px;
+    font-weight: 400;
+    color: #000000;
+    line-height: 83.33px;
+    height: 83px;
 }
 
 form {
     display: flex;
     width: 100%;
+    height: 80%;
     flex-direction: column;
     align-items: flex-start;
 }
@@ -70,7 +238,180 @@ form div {
 
 form input {
     width: 100%;
-    height: 68px;
+    height: 64px;
     border: none;
     border-radius: 5px;
+    font-size: 22px;
+    padding-left: 10px;
+}
+
+form textarea {
+    width: 100%;
+    height: 170px;
+    border: none;
+    border-radius: 5px;
+    font-size: 22px;
+    padding-left: 10px;
+}
+
+/* Style de base pour la lightbox */
+.lightbox {
+    position: fixed;
+    /* Positionnement fixe sur toute la page */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    /* Fond semi-transparent noir */
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+    z-index: 1000;
+    /* S'assure que la lightbox est au-dessus des autres éléments */
+}
+
+/* Conteneur du contenu de la lightbox */
+.lightbox-content {
+    background: white;
+    padding: 20px;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Ombre douce pour le relief */
+}
+
+/* Style de l'image dans la lightbox */
+.lightbox-media {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #FAFAFA;
+}
+
+.lightbox-image,
+.lightbox-video {
+    width: 1050px;
+    height: 900px;
+    object-fit: cover;
+}
+
+.lightbox-info {
+    width: 1050px;
+}
+
+.lightbox-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #D3573C;
+    margin: 0;
+    padding: 5px 0;
+}
+
+
+
+/* Style des boutons de fermeture de la lightbox */
+.close-button,
+.prev-button,
+.next-button {
+    position: absolute;
+    font-size: 48px;
+    color: #901C1C;
+    background: none;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.close-button {
+    top: 20px;
+    right: 100px;
+    padding: 5px 10px;
+    z-index: 1002;
+}
+
+/* Style de la flèche de navigation */
+.prev-button,
+.next-button {
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1001;
+    height: 100%;
+}
+
+
+.prev-button {
+    left: 100px;
+}
+
+.next-button {
+    right: 100px;
+}
+
+/* Styles label et select */
+.select-div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    margin: 20px 100px;
+}
+
+.select-div label {
+    font-size: 18px;
+    font-weight: 700;
+    margin-right: 20px;
+}
+
+.selected-option {
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    width: 170px;
+    height: 70px;
+    border: none;
+    background-color: #901C1C;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-left: 5px;
+}
+
+.sort-select {
+    display: none;
+    z-index: 1;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    background-color: #901C1C;
+    border-radius: 0 0 5px 5px;
+    top: 100%;
+    left: 89px;
+    margin-top: -6px;
+    width: 170px;
+    padding-left: 12px;
+}
+
+.sort-select li {
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    padding: 0 11px;
+    width: 88%;
+    height: 70px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-top: 1px solid white;
 }
