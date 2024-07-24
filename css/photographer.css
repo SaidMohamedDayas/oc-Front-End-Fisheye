@@ -72,11 +72,6 @@
     width: 100%;
     border-radius: 5px;
     cursor: pointer;
-    object-position: center;
-    object-fit: cover;
-}
-
-.media-video {
     object-fit: cover;
 }
 
@@ -297,7 +292,7 @@ form textarea {
 
 .lightbox-image,
 .lightbox-video {
-    width: 1050px;
+    max-width: 1050px;
     height: 900px;
     object-fit: cover;
 }
