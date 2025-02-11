@@ -135,7 +135,6 @@ function initializeSortSelect() {
   popularityOption.setAttribute("aria-expanded", "false");
 
   const popularityText = document.createElement("span");
-  // ajouter id pour le test
   popularityText.id = "sort-span";
   popularityText.textContent = "Popularité";
 
@@ -149,16 +148,19 @@ function initializeSortSelect() {
 
   const select = document.createElement("ul");
   select.classList.add("sort-select");
+  select.id = "sort-select"; // Ajouter l'id pour correspondre au label
   selectDiv.appendChild(select);
 
   // Option pour trier par date
   const dateOption = document.createElement("li");
   dateOption.textContent = "Date";
+  dateOption.setAttribute("role", "option");
   select.appendChild(dateOption);
 
   // Option pour trier par titre
   const titleOption = document.createElement("li");
   titleOption.textContent = "Titre";
+  titleOption.setAttribute("role", "option");
   select.appendChild(titleOption);
 
   // Ajouter un écouteur d'événement pour le changement de tri

@@ -136,12 +136,13 @@ function createInputField(form, id, labelText, ariaLabel, labelNum) {
   const div = document.createElement("div");
   const label = document.createElement("label");
   label.textContent = labelText;
-  label.id = `label_for_${id}`; // Id pour aria-labelledby
+  label.setAttribute("for", id);
   const input = document.createElement("input");
   input.type = "text";
   input.name = id;
   input.id = id;
-  input.setAttribute("aria-labelledby", label.id);
+  input.setAttribute("aria-label", ariaLabel);
+  input.setAttribute("autocomplete", "on");
   div.appendChild(label);
   div.appendChild(input);
   form.appendChild(div);
@@ -152,11 +153,12 @@ function createTextAreaField(form, id, labelText, ariaLabel, labelNum) {
   const div = document.createElement("div");
   const label = document.createElement("label");
   label.textContent = labelText;
-  label.id = `label_for_${id}`;
+  label.setAttribute("for", id);
   const textarea = document.createElement("textarea");
   textarea.name = id;
   textarea.id = id;
-  textarea.setAttribute("aria-labelledby", label.id);
+  textarea.setAttribute("aria-label", ariaLabel);
+  textarea.setAttribute("autocomplete", "on");
   div.appendChild(label);
   div.appendChild(textarea);
   form.appendChild(div);
