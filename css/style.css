@@ -47,6 +47,11 @@ h1 {
     cursor: pointer;
 }
 
+.photographer_link {
+    text-decoration: none;
+    text-align: center;
+}
+
 .photographer_section article h2 {
     color: #D3573C;
     font-size: 36px;

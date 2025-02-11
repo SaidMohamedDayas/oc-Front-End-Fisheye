@@ -8,7 +8,7 @@ export function photographerTemplate(data) {
     const link = document.createElement("a");
     link.setAttribute("href", `photographer.html?id=${id}`);
     link.setAttribute("aria-label", `Voir le profil de ${name}`);
-    link.classList.add("photographer-link");
+    link.classList.add("photographer_link");
 
     const img = document.createElement("img");
     img.setAttribute("src", picture);
