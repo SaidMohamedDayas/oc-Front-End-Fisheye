@@ -155,12 +155,14 @@ function initializeSortSelect() {
   const dateOption = document.createElement("li");
   dateOption.textContent = "Date";
   dateOption.setAttribute("role", "option");
+  dateOption.setAttribute("tabindex", "0");
   select.appendChild(dateOption);
 
   // Option pour trier par titre
   const titleOption = document.createElement("li");
   titleOption.textContent = "Titre";
   titleOption.setAttribute("role", "option");
+  titleOption.setAttribute("tabindex", "0");
   select.appendChild(titleOption);
 
   // Ajouter un écouteur d'événement pour le changement de tri
@@ -194,15 +196,12 @@ function addSortChangeListener(
 
   select.addEventListener("click", (event) => {
     const option = event.target;
-
     const textContentSort = option.textContent;
 
     if (textContentSort) {
       // Échanger les textes et valeurs entre l'option sélectionnée et l'option cliquée
       const tempText = selectedText.textContent;
-
       selectedText.textContent = option.textContent;
-
       option.textContent = tempText;
 
       // Cacher le menu
@@ -219,6 +218,16 @@ function addSortChangeListener(
         sortMediasByDate();
       } else {
         console.error("Valeur de tri inconnue", textContentSort);
+      }
+    }
+  });
+
+  // Ajouter un écouteur d'événement pour la touche Entrée
+  select.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      const option = document.activeElement;
+      if (option && option.getAttribute("role") === "option") {
+        option.click();
       }
     }
   });
@@ -240,7 +249,6 @@ function sortMediasByPopularity() {
   mediaDivs.forEach((div) => mediaList.appendChild(div));
 
   updateMediaIndex();
-  // afficher dans la console les index des médias triés par popularité
 }
 
 // Créer une fonction pour trier les médias par titre

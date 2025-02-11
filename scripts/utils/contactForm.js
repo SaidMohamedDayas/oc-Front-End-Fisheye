@@ -34,6 +34,9 @@ function displayModal() {
   backdropModal.style.display = "block";
 }
 
+const contactBtn = document.getElementById("contact_button");
+contactBtn.addEventListener("click", displayModal);
+
 // Fonction pour créer le formulaire de contact
 async function createContactForm(photographerId) {
   try {
@@ -95,13 +98,13 @@ async function createContactForm(photographerId) {
     // form.onsubmit = sendForm;
 
     // Création et ajout du champ 'Prénom'
-    createInputField(form, "firstname", "Prénom", "First name", 3);
+    createInputField(form, "firstname", "Prénom", "First name");
     // Création et ajout du champ 'Nom'
-    createInputField(form, "lastname", "Nom", "Last name", 5);
+    createInputField(form, "lastname", "Nom", "Last name");
     // Création et ajout du champ 'Email'
-    createInputField(form, "email", "Email", "Email", 7);
+    createInputField(form, "email", "Email", "Email");
     // Création et ajout du champ 'Votre message'
-    createTextAreaField(form, "message", "Votre message", "Your message", 9);
+    createTextAreaField(form, "message", "Votre message", "Your message");
 
     // Créer le bouton d'envoi
     const sendBtn = document.createElement("button");
@@ -132,7 +135,7 @@ async function createContactForm(photographerId) {
 }
 
 // Fonction pour créer un champ de saisie
-function createInputField(form, id, labelText, ariaLabel, labelNum) {
+function createInputField(form, id, labelText, ariaLabel) {
   const div = document.createElement("div");
   const label = document.createElement("label");
   label.textContent = labelText;
@@ -149,7 +152,7 @@ function createInputField(form, id, labelText, ariaLabel, labelNum) {
 }
 
 // Fonction pour créer un champ de texte étendu
-function createTextAreaField(form, id, labelText, ariaLabel, labelNum) {
+function createTextAreaField(form, id, labelText, ariaLabel) {
   const div = document.createElement("div");
   const label = document.createElement("label");
   label.textContent = labelText;

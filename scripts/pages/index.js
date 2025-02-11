@@ -1,3 +1,5 @@
+import { photographerTemplate } from "../templates/photographer.js";
+
 async function getPhotographers() {
   try {
     // Récupérer les données des photographes
