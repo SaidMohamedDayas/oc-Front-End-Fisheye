@@ -700,8 +700,6 @@ class Lightbox {
       this.nextMedia();
     } else if (event.key === "ArrowLeft") {
       this.previousMedia();
-    } else if (event.key === "Enter") {
-      this.displayLightbox();
     }
   };
 }
