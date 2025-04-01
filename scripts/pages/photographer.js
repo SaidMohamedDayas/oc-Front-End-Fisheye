@@ -219,7 +219,7 @@ function displayLightbox(mediaDiv, photographerName) {
 document.addEventListener("DOMContentLoaded", async function () {
   try {
     const logo = document.querySelector("header .logo");
-    wrapImageInLink(logo, "/");
+    wrapImageInLink(logo, "./index.html");
     logo.setAttribute("alt", "Fisheye logo");
 
     await loadData();
