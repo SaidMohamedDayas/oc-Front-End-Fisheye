@@ -613,6 +613,7 @@ class Lightbox {
   createLightbox() {
     const lightbox = document.createElement("div");
     lightbox.classList.add("lightbox");
+    lightbox.setAttribute("tabindex", "0");
     document.body.appendChild(lightbox);
     this.lightbox = lightbox;
 
@@ -646,6 +647,7 @@ class Lightbox {
     nextBtn.title = "Média suivant";
     nextBtn.addEventListener("click", this.nextMedia.bind(this));
     lightbox.appendChild(nextBtn);
+    lightbox.focus();
 
     this.updateMedia();
   }

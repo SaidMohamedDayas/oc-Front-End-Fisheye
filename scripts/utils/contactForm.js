@@ -32,6 +32,8 @@ function displayModal() {
   modal.style.display = "block";
   // Afficher le backdrop
   backdropModal.style.display = "block";
+  // focus sur le modal
+  modal.focus();
 }
 
 const contactBtn = document.getElementById("contact_button");
@@ -54,6 +56,7 @@ async function createContactForm(photographerId) {
     contactModal.setAttribute("role", "dialog");
     contactModal.setAttribute("aria-labelledby", "contact_modal");
     contactModal.style.display = "none";
+    contactModal.setAttribute("tabindex", "0");
 
     // Créer le div interne et ajouter la classe 'modal'
     const modal = document.createElement("div");
@@ -80,7 +83,14 @@ async function createContactForm(photographerId) {
     const closeBtn = document.createElement("img");
     closeBtn.src = "assets/icons/close.svg";
     closeBtn.setAttribute("aria-label", "Close Contact form");
+    closeBtn.setAttribute("role", "button");
+    closeBtn.setAttribute("tabindex", "0");
     closeBtn.onclick = closeModal;
+    closeBtn.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        closeModal();
+      }
+    });
 
     // Ajouter un écouteur d'événement à la touche Echap
     document.addEventListener("keydown", (event) => {
@@ -140,12 +150,14 @@ function createInputField(form, id, labelText, ariaLabel) {
   const label = document.createElement("label");
   label.textContent = labelText;
   label.setAttribute("for", id);
+
   const input = document.createElement("input");
-  input.type = "text";
+  input.type = labelText === "Email" ? "email" : "text"; // Définir le type dynamiquement
   input.name = id;
   input.id = id;
   input.setAttribute("aria-label", ariaLabel);
   input.setAttribute("autocomplete", "on");
+
   div.appendChild(label);
   div.appendChild(input);
   form.appendChild(div);
@@ -177,10 +189,16 @@ async function sendForm(event) {
   const email = document.getElementById("email").value;
   const message = document.getElementById("message").value;
 
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
   // Si les champs ne sont pas remplis, afficher un message d'erreur
   if (!firstname || !lastname || !email || !message) {
     // Afficher un message d'erreur
     alert("Veuillez remplir tous les champs");
+    return;
+  } else if (!emailRegex.test(email)) {
+    // Afficher un message d'erreur
+    alert("Veuillez entrer une adresse email valide");
     return;
   } else {
     // Afficher un message de succès

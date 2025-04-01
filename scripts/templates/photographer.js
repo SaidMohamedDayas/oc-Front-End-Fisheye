@@ -9,6 +9,7 @@ export function photographerTemplate(data) {
     link.setAttribute("href", `photographer.html?id=${id}`);
     link.setAttribute("aria-label", `Voir le profil de ${name}`);
     link.classList.add("photographer_link");
+    link.setAttribute("tabindex", "0");
 
     const img = document.createElement("img");
     img.setAttribute("src", picture);
@@ -42,5 +43,5 @@ export function photographerTemplate(data) {
     return article;
   }
 
-  return { name, picture, id, city, country, tagline, price, getUserCardDOM };
+  return { getUserCardDOM };
 }
