@@ -3,7 +3,7 @@ import { photographerTemplate } from "../templates/photographer.js";
 async function getPhotographers() {
   try {
     // Récupérer les données des photographes
-    const data = await fetch("../data/photographers.json");
+    const data = await fetch("data/photographers.json");
     if (!data.ok) {
       throw new Error("HTTP Error! Status : " + data.status);
     }
