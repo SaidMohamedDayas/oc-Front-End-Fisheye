@@ -38,7 +38,6 @@ export function photographerTemplate(data) {
     article.appendChild(pricePerDay);
     article.classList.add("photographer_card");
     article.setAttribute("data-id", id);
-    article.setAttribute("tabindex", "0");
 
     return article;
   }
