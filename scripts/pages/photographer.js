@@ -2,6 +2,7 @@
 import Lightbox, { sortedMediaList } from "../utils/Lightbox.js";
 import TotalLikesDisplay from "../utils/TotalLikesDisplay.js";
 import { mediaFactory } from "../templates/media.js";
+import { photographerTemplate } from "../templates/photographer.js";
 
 // Variables globales
 let photographers = [];
@@ -38,35 +39,38 @@ function displayPhotographer() {
     return;
   }
   document.title = `Fisheye - ${photographer.name}`;
-  const header = document.querySelector(".photograph-header");
-  header.prepend(createPhotographerProfile(photographer));
 
-  const img = document.createElement("img");
-  img.src = `assets/photographers/Photographers_ID_Photos/${photographer.portrait}`;
-  img.alt = `Portrait de ${photographer.name}`;
+  const header = document.querySelector(".photograph-header");
+  const photographerModel = photographerTemplate(photographer);
+  const userCardDOM = photographerModel.getUserCardDOM();
+
+  // Ajouter le DOM du photographe à l'en-tête
+  const profileElements = userCardDOM.querySelectorAll(".location, .description");
+  const profileDiv = document.createElement("div");
+  profileDiv.className = "photograph-profile";
+
+  // Créer et ajouter le nom du photographe
+  const nameElement = document.createElement("h2");
+  nameElement.className = "photograph-name";
+  nameElement.textContent = photographer.name;
+  profileDiv.appendChild(nameElement);
+
+  // Ajouter les éléments de localisation et de description
+  profileElements.forEach((el) => {
+    if (el.classList.contains("location")) {
+      el.classList.replace("location", "photograph-location");
+    }
+    if (el.classList.contains("description")) {
+      el.classList.replace("description", "photograph-description");
+    }
+    profileDiv.appendChild(el);
+  });
+
+  header.prepend(profileDiv);
+
+  const img = userCardDOM.querySelector("img");
   img.classList.add("photographer-portrait");
   header.appendChild(img);
-}
-
-// Création du profil du photographe
-function createPhotographerProfile({ name, city, country, tagline }) {
-  const div = document.createElement("div");
-  div.className = "photograph-profile";
-
-  const h2 = document.createElement("h2");
-  h2.className = "photograph-name";
-  h2.textContent = name;
-
-  const location = document.createElement("p");
-  location.className = "photograph-location";
-  location.textContent = `${city}, ${country}`;
-
-  const description = document.createElement("p");
-  description.className = "photograph-description";
-  description.textContent = tagline;
-
-  div.append(h2, location, description);
-  return div;
 }
 
 // Tri et affichage des médias
